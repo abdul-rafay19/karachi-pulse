@@ -1,0 +1,147 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --ink: #0a0f1a;
+  --ink-soft: #0d1420;
+  --panel: #121a2b;
+  --panel-2: #182238;
+  --border: #26324a;
+  --border-soft: #1c2740;
+  --text: #e8ecf4;
+  --muted: #8ea0bd;
+  --muted-2: #64769450;
+  --sand: #cda36a;
+  --sand-soft: #cda36a1f;
+  --teal: #3fb6a8;
+  --teal-soft: #3fb6a81f;
+
+  --risk-low: #34c78a;
+  --risk-low-soft: #34c78a1f;
+  --risk-moderate: #f0a83c;
+  --risk-moderate-soft: #f0a83c1f;
+  --risk-critical: #ef5b4e;
+  --risk-critical-soft: #ef5b4e1f;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 18px;
+  --radius-sm: 10px;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--teal-soft);
+  color: var(--text);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.kp-card {
+  background: var(--panel);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-card);
+}
+
+.kp-panel-2 {
+  background: var(--panel-2);
+}
+
+.kp-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.kp-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+.kp-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.leaflet-container {
+  background: var(--ink-soft) !important;
+  font-family: var(--font-body), sans-serif;
+}
+
+/*
+ * Recreates a CARTO-dark-style basemap on top of plain, keyless OpenStreetMap
+ * raster tiles: invert the tile image, spin the hue back to neutral, then
+ * pull brightness/contrast/saturation down so streets read as pale lines on
+ * near-black rather than an inverted photo negative. No API key, no billing,
+ * no rate-limit surprises mid-demo.
+ */
+.kp-tile-dark {
+  filter: invert(1) hue-rotate(200deg) brightness(0.85) contrast(0.85) saturate(0.35);
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--panel);
+  color: var(--text);
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+}
+.leaflet-popup-tip {
+  background: var(--panel);
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+}
+.leaflet-popup-content {
+  padding: 12px 14px;
+  min-width: 200px;
+}
+.leaflet-control-attribution {
+  background: rgba(10, 15, 26, 0.75) !important;
+  color: var(--muted) !important;
+}
+.leaflet-control-attribution a {
+  color: var(--teal) !important;
+}
+.leaflet-control-zoom a {
+  background: var(--panel) !important;
+  color: var(--text) !important;
+  border-color: var(--border-soft) !important;
+}
+
+@keyframes kp-pulse-ring {
+  0% { transform: scale(0.7); opacity: 0.55; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.kp-pulse-ring {
+  animation: kp-pulse-ring 2.4s ease-out infinite;
+}
+
+@keyframes kp-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.kp-fade-in {
+  animation: kp-fade-in 0.4s ease-out both;
+}
