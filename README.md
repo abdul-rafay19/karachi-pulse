@@ -127,8 +127,9 @@ docs/                Architecture, risk engine, demo script, deployment, context
 
 ## Team
 
-Built as a hackathon MVP for Karachi Pulse.
+Built as a hackathon MVP for Karachi Pulse..
 
 ---
 
 *Risk estimates are informational and based on available reports and weather data. They should not replace official emergency guidance.*
+## Contributers
